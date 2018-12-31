@@ -1,0 +1,43 @@
+.Header {
+  display: flex;
+  height: 5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+  color: rgba(16, 33, 105, 1);
+  margin-bottom: 20px;
+}
+
+.Logo {
+  margin: 0 .5rem;
+  flex: 0 0 auto;
+  height: 5rem;
+  width: 5rem;
+}
+
+.Baner {
+  flex: 1 1 auto;
+  height: 5rem;
+}
+
+.Baner > * {
+  margin: 0;
+  padding: .3rem;
+  letter-spacing: 1px;
+  -webkit-margin-collapse: collapse;
+}
+
+.Menu {
+  margin: 1.25rem;
+  flex: 0 1 auto;
+  max-width: 50%;
+}
+
+.Menu button {
+  color: white;
+  font-size: 1.2rem;
+  padding: .5rem 1rem;
+  margin: 0 .2rem;
+  border: none;
+  background-color: rgba(16, 33, 105, .7);
+  border-radius: 20px; 
+  cursor: pointer;
+}

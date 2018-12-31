@@ -1,0 +1,31 @@
+.DashMenu {
+  width: 50vw;
+  height: fit-content;
+  position: absolute;
+  top: 25vh;
+  left: 25vw;
+  box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.8);
+  padding: .5rem;
+  border: 2px solid rgba(16, 33, 105, .7);
+}
+
+.DashMenu ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+}
+
+.DashMenu ul li {
+  list-style-type: none;
+  color: white;
+  font-size: 1rem;
+  padding: .3rem 1rem;
+  margin: .5rem;
+  border: none;
+  background-color: rgba(16, 33, 105, .7);
+  border-radius: 20px; 
+  cursor: pointer;
+}
