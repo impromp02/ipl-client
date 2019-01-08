@@ -1,63 +1,9 @@
 import * as d3 from 'd3';
 import d3Tip from 'd3-tip';
+import { teamNames } from '../../valueMap';
 import './helper.css';
 
-/*let dataset = [
-  {
-  '_id': 9,
-  'value': 14
-  },
-  {
-  '_id': 5,
-  'value': 118
-  },
-  {
-  '_id': 2,
-  'value': 139
-  },
-  {
-  '_id': 3,
-  'value': 131
-  },
-  {
-  '_id': 10,
-  'value': 46
-  },
-  {
-  '_id': 6,
-  'value': 133
-  },
-  {
-  '_id': 11,
-  'value': 62
-  },
-  {
-  '_id': 12,
-  'value': 14
-  },
-  {
-  '_id': 7,
-  'value': 140
-  },
-  {
-  '_id': 4,
-  'value': 134
-  },
-  {
-  '_id': 8,
-  'value': 75
-  },
-  {
-  '_id': 13,
-  'value': 16
-  },
-  {
-  '_id': 1,
-  'value': 132
-  }
-  ]; */
-
-export const drawBarChart = (dataset, node) => {
+export const drawBarChart = (dataset, node, meta) => { 
   const margin = {
     top: 40,
     right: 20,
@@ -84,7 +30,7 @@ export const drawBarChart = (dataset, node) => {
     .attr('class', 'd3-tip')
     .offset([-10, 0])
     .html(function(d) {
-      return "<strong>Matches:</strong> <span style='color:red'>" + d.value + "</span>";
+      return "<strong>" + meta.label + ":</strong> <span style='color:red'>" + d.value + "</span>";
     });
 
   let svg = d3.select(node)
@@ -94,14 +40,6 @@ export const drawBarChart = (dataset, node) => {
       .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
   svg.call(tip);
-
-  svg.append("text")
-      .attr("class", "title")
-      .attr('textLength', '40%')
-      .attr('dx', '30%')
-      .attr('dy', '-1rem')
-      .attr('text-anchor', 'center')
-      .text('Matches played in all seasons')
 
   svg.append('g')
     .attr('class', 'x axis')
@@ -117,12 +55,19 @@ export const drawBarChart = (dataset, node) => {
     .attr('dy', '.71em')
     .attr('fill', 'black')
     .style('text-anchor', 'end')
-    .text('Matches');
+    .text(meta.label);
   
   svg.selectAll('rect')
-    .data(dataset)
+    .data(dataset, function(d) {return d._id})
   .enter().append('rect')
-    .attr('class', 'bar')
+    .attr('class', function(d) {
+      if(meta.label === 'Matches') {
+        return teamNames[d._id];
+      } else {
+        return 'bar';
+      }
+      
+    })
     .attr('x', function(d) {
       return xScale(d._id);
     })

@@ -1,13 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import Header from './containers/Header/Header';
-import DashView from './containers/DashView/DashView';
+import AllSeasonDash from './containers/DashView/AllSeasonDash';
 
 class App extends Component {
   render() {
     return (
       <Fragment>
         <Header/>
-        <DashView/>
+        <AllSeasonDash/>
       </Fragment>
     );
   }
