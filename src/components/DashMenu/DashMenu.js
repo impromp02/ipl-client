@@ -10,7 +10,7 @@ const type = 'season';
 const DashMenu = ({hideMenu}) => {
   let menuElements = [];
   for (let i=1; i<=MENU_ITEMS[type]; i++) {
-    menuElements.push(<li key={type+i} onClick={hideMenu}><Link to={type + "/" + i}>{type + ' ' + i}</Link></li>);
+    menuElements.push(<li key={type+i} onClick={hideMenu}><Link to={`/${type}/${i}`}>{type + ' ' + i}</Link></li>);
   }
 
   return (

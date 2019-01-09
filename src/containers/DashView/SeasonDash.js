@@ -9,7 +9,7 @@ class SeasonDash extends Component {
   };
 
   componentDidMount() {
-    fetch('http://localhost:8080/api/season/1')
+    fetch('http://localhost:8080/api/season/'+ this.props.match.params.seasonId)
     .then(res => res.json())
     .then(res => this.setState({data: res}))
     .catch(error => console.log(error));

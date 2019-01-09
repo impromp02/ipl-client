@@ -7,7 +7,7 @@ export const drawDualBarChart = (dataset, node, meta) => {
   const margin = {
     top: 40,
     right: 20,
-    bottom: 40,
+    bottom: 50,
     left: 40
   };
   
