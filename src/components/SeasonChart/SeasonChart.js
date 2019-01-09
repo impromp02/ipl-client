@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import { drawBarChart } from './d3/helper';
-import styles from './AllSeasonChart.module.css';
+import { drawDualBarChart } from './SeasonChartHelper';
+import styles from './SeasonChart.module.css';
 
-class AllSeasonChart extends Component {
+class SeasonChart extends Component {
   constructor(props) {
     super(props);
     this.node = React.createRef();
   }
 
   componentDidMount() {
-    drawBarChart(this.props.data, this.node.current, this.props.meta);
+    drawDualBarChart(this.props.data, this.node.current, this.props.meta);
   }
 
   render() {
@@ -23,4 +23,4 @@ class AllSeasonChart extends Component {
   }
 }
 
-export default AllSeasonChart;
+export default SeasonChart;

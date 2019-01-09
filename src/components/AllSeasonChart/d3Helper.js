@@ -1,7 +1,8 @@
 import * as d3 from 'd3';
 import d3Tip from 'd3-tip';
-import { teamNames } from '../../valueMap';
-import './helper.css';
+import { teamNames } from '../../utils/valueMap';
+import './d3Helper.css';
+import '../../utils/teamColors.css';
 
 export const drawBarChart = (dataset, node, meta) => { 
   const margin = {

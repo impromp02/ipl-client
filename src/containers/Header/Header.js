@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import logo from '../../logo.png';
 import styles from './Header.module.css';
 
-const Header = () => (
+const Header = ({showMenu}) => (
   <Fragment>
     <div className={styles.Header}>
       <div className={styles.Logo}>
@@ -13,7 +13,7 @@ const Header = () => (
         <h4>Visualize the IPL</h4>
       </div>
       <div className={styles.Menu}>
-        <button>Seasons</button>
+        <button onClick={showMenu}>Seasons</button>
         <button>Matches</button>
       </div>
     </div>

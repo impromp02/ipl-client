@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
-import AllSeasonChart from '../../components/Charts/AllSeasonChart';
-import { seasonMeta } from '../../components/valueMap';
+import AllSeasonChart from '../../components/AllSeasonChart/AllSeasonChart';
+import { allSeasonMeta } from '../../utils/valueMap';
+import Spinner from '../../components/Spinner/Spinner';
 
 class AllSeasonDash extends Component {
   state = {
@@ -21,7 +22,8 @@ class AllSeasonDash extends Component {
   render() {
     return (
       <Fragment>
-        {this.state.data.map((array, i) => <AllSeasonChart key={i} meta={seasonMeta[i]} data={array} />)}
+        { this.state.data.length === 0 ? <Spinner/> :
+        this.state.data.map((array, i) => <AllSeasonChart key={i} meta={allSeasonMeta[i]} data={array} />)}
       </Fragment>
     );
   }
