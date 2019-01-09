@@ -63,7 +63,7 @@ export const drawBarChart = (dataset, node, meta) => {
   .enter().append('rect')
     .attr('class', function(d) {
       if(meta.label === 'Matches') {
-        return teamNames[d._id];
+        return teamNames[d._id-1];
       } else {
         return 'bar';
       }
@@ -79,4 +79,27 @@ export const drawBarChart = (dataset, node, meta) => {
     .attr("height", function(d) { return height - yScale(d.value); })
     .on('mouseover', tip.show)
     .on('mouseout', tip.hide);
+
+  if(meta.label === 'Matches') {
+    const legend = svg.append("g")
+        .attr("font-family", "sans-serif")
+        .attr("font-size", 10)
+        .attr("text-anchor", "end")
+      .selectAll("g")
+      .data(teamNames)
+      .enter().append("g")
+        .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+  
+    legend.append("rect")
+        .attr("x", width + margin.right - 19)
+        .attr("width", 19)
+        .attr("height", 19)
+        .attr("class", function(d){return d; });
+  
+    legend.append("text")
+        .attr("x", width+margin.right - 24)
+        .attr("y", 9.5)
+        .attr("dy", "0.32em")
+        .text(function(d) { return d; });
+  }
 };

@@ -67,7 +67,7 @@ export const drawDualBarChart = (dataset, node, meta) => {
         .attr("height", function(d) { return height - yScale(d.runs); })
         .attr('class', 'ktk');
   
-    var legend = svg.append("g")
+    const legend = svg.append("g")
         .attr("font-family", "sans-serif")
         .attr("font-size", 10)
         .attr("text-anchor", "end")
