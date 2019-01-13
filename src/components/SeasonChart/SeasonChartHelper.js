@@ -1,6 +1,5 @@
 import * as d3 from 'd3';
 import {teamNames} from '../../utils/valueMap';
-import './SeasonChartHelper.module.css';
 import '../../utils/teamColors.css';
 
 export const drawDualBarChart = (dataset, node, meta) => { 
@@ -27,7 +26,7 @@ export const drawDualBarChart = (dataset, node, meta) => {
                   .domain([0, d3.max(dataset, function(d) {return d3.max(d.score, function(key) {return key['runs']}) })])
                   .range([height, 0]);
 
-  const xAxis = d3.axisBottom(xScale0);
+  const xAxis = d3.axisBottom(xScale0).tickSize(0);
   const yAxis = d3.axisLeft(yScale);
 
   let svg = d3.select(node)
@@ -37,13 +36,11 @@ export const drawDualBarChart = (dataset, node, meta) => {
       .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
   svg.append('g')
-    .attr('class', 'x axis')
     .attr('transform', 'translate(0,' + height + ')')
     .call(xAxis)
     .selectAll(".tick text").attr("transform", "rotate(-90)").attr('dx', "-2.5em").attr('dy', 0);
   
   svg.append('g')
-    .attr('class', 'y axis')
     .call(yAxis)
   .append('text')
     .attr('transform', 'rotate(-90)')
@@ -59,13 +56,23 @@ export const drawDualBarChart = (dataset, node, meta) => {
     .enter().append('g')
       .attr('transform', function(d) { return "translate(" + xScale0(d.Match_Id) + ",0)"; })
       .selectAll('rect')
-      .data(function(d) { return d.score })
+      .data(function(d) { return d.score.reverse() })
       .enter().append('rect')
         .attr('x', function(d) {return xScale1(d._id)})
         .attr('y', function(d) { return yScale(d.runs)})
         .attr("width", xScale1.bandwidth())
         .attr("height", function(d) { return height - yScale(d.runs); })
-        .attr('class', 'ktk');
+        .attr('class', function(d) {
+          let matchData = d3.select(this.parentNode).datum();
+          if(d._id === "1") {
+            if(matchData.Toss_Decision === 'bat') return teamNames[+matchData.Toss_Winner_Id - 1];
+            else return teamNames[+matchData.Opponent_Team_Id - 1];
+          } else {
+            if(matchData.Toss_Decision === 'bat') return teamNames[+matchData.Opponent_Team_Id - 1];
+            else return teamNames[+matchData.Toss_Winner_Id - 1];
+          }
+          
+        });
   
     const legend = svg.append("g")
         .attr("font-family", "sans-serif")

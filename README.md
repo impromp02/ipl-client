@@ -1,44 +1,22 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## IPL Dashboard
+An IPL (Indian Premier League) web application developed in React and Node for data visualisation.
 
-## Available Scripts
+### List of Frameworks used
+- React: It is used to develop the entire frontend application.
+- react-router: Used for handling routing on the frontend.
+- d3.js: For binding datasets to DOM elements on the frontend and to draw SVG shapes easily.
+- Express: For building an HTTP node server on the backend.
+- Mongoose: Used as a node client for mongoDB database.
+- MongoDB: Used as database on the backend.
 
-In the project directory, you can run:
+### Bonus Points
 
-### `npm start`
+1. __Create the web-app in vue.js__: I have used Reactjs because I have been working with it for quite sometime now. Also, I haven't got my hands dirty with vue.js yet.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+2. __optimize the loading time__: I have only used the packages that are required for the project to do all the heavy-lifting. Secondly, I am using code-spliting with react to make chunks for my `bundle.js` file so that the user can get quick first paint.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+3. __make it mobile responsive__: I have used CSS flexbox extensively to develop the UI so that the elements adjust themselve to different screen sizes. I am also using `media-queries` when required.
 
-### `npm test`
+4. __make it a progressive web-app__: I have not worked on this this part of the assignment due to time issues. I am aware about the concepts of PWA and I'll add it to project later.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+5. __make it offline usable__: I have not worked with the ServiceWorkers and Caching yet but I am familiar about the concepts and I have discussed things like Caching strategies etc. 

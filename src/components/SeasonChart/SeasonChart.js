@@ -13,7 +13,6 @@ class SeasonChart extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <div className={styles.Chart} >
         <h2>{this.props.meta.title}</h2>

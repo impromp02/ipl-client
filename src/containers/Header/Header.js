@@ -1,8 +1,9 @@
 import React, { Fragment } from 'react';
 import logo from '../../logo.png';
 import styles from './Header.module.css';
+import {withRouter} from 'react-router-dom';
 
-const Header = ({showMenu}) => (
+const Header = (props) => (
   <Fragment>
     <div className={styles.Header}>
       <div className={styles.Logo}>
@@ -13,15 +14,22 @@ const Header = ({showMenu}) => (
         <h4>Visualize the IPL</h4>
       </div>
       <div className={styles.Menu}>
-        <button onClick={showMenu}>Seasons</button>
+        <button onClick={props.showMenu}>Seasons</button>
         <button>Matches</button>
       </div>
     </div>
     <div className={styles.SubHeader}>
-
+      Statistics for <span>{mapRoute(props.location.pathname)}</span>
     </div>
   </Fragment>
   
 );
 
-export default Header;
+export default withRouter(Header);
+
+function mapRoute(pathname) {
+  switch(pathname) {
+    case '/': return 'All Seasons';
+    default: return 'Season ' + pathname.slice(-1);
+  }
+}
