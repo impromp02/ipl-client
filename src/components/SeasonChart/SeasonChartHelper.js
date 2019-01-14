@@ -64,12 +64,13 @@ export const drawDualBarChart = (dataset, node, meta) => {
         .attr("height", function(d) { return height - yScale(d.runs); })
         .attr('class', function(d) {
           let matchData = d3.select(this.parentNode).datum();
-          if(d._id === "1") {
-            if(matchData.Toss_Decision === 'bat') return teamNames[+matchData.Toss_Winner_Id - 1];
-            else return teamNames[+matchData.Opponent_Team_Id - 1];
+          let teams = [matchData.Team_Name_Id, matchData.Opponent_Team_Id];
+          if(d._id === 1) {
+            if(matchData.Toss_Decision === 'bat') return teamNames[teams[0] - 1];
+            else return teamNames[teams[1] - 1];
           } else {
-            if(matchData.Toss_Decision === 'bat') return teamNames[+matchData.Opponent_Team_Id - 1];
-            else return teamNames[+matchData.Toss_Winner_Id - 1];
+            if(matchData.Toss_Decision === 'bat') return teamNames[teams[1] - 1];
+            else return teamNames[teams[0] - 1];
           }
           
         });

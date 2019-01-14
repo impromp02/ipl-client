@@ -1,34 +1,34 @@
 export const allSeasonMeta = [
   {
     label: 'Matches',
-    title: 'Total Matches Played By Teams' 
+    title: 'Matches Played in all Seasons' 
   },
   {
     label: 'Decision Type',
-    title: 'Decision Type of Matches'
+    title: 'Match Decision in all Seasons'
   },
   {
     label: 'Avg Margin',
-    title: 'Average Win Score Margin in Seasons'
+    title: 'Average Win Margin in all Seasons'
   },
   {
     label: 'Matches',
-    title: 'Matches Won by Teams'
+    title: 'Matches Won by Teams in all Seasons'
   }
 ];
 
 export const seasonMeta = [
   {
     label: 'Score',
-    title: 'Runs Scored in Each Matches' 
+    title: 'Runs Scored in all the Matches' 
   },
   {
     label: 'Toss Decision',
-    title: 'Toss Decisions though the Season'
+    title: 'Toss Decisions'
   },
   {
     label: 'Result By',
-    title: 'Overview of Season Result'
+    title: 'Overview of Season Results'
   }
 ]
 
