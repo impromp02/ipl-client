@@ -9,12 +9,14 @@ import MatchDash from './containers/DashView/MatchDash';
 
 class App extends Component {
   state = {
-    dashMenu: false
+    dashMenu: false,
+    dashMenuType: 'Seasons'
   };
 
-  showDashMenu = () => {
+  showDashMenu = (event) => {
     this.setState({
-      dashMenu: true
+      dashMenu: true,
+      dashMenuType: event.target.innerHTML
     });
   };
 
@@ -28,7 +30,7 @@ class App extends Component {
     return (
       <Fragment>
         <Header showMenu={this.showDashMenu}/>
-        {this.state.dashMenu ? <DashMenu hideMenu={this.hideDashMenu}/> : null}
+        {this.state.dashMenu ? <DashMenu type={this.state.dashMenuType} hideMenu={this.hideDashMenu}/> : null}
         <Switch>
           <Route exact path='/' component={AllSeasonDash}/>
           <Route path='/season/:seasonId/match/:matchId' component={MatchDash}/>

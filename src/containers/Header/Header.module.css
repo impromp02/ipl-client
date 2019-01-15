@@ -40,6 +40,11 @@
   cursor: pointer;
 }
 
+.Menu button:disabled {
+  background: rgba(16, 33, 105, .3);
+  cursor: not-allowed;
+}
+
 .SubHeader {
   background: linear-gradient(90deg, #19398A 0%, #5191CD 49.83%, #19398A 100%);
   height: max-content;

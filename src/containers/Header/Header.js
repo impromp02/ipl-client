@@ -15,7 +15,7 @@ const Header = (props) => (
       </div>
       <div className={styles.Menu}>
         <button onClick={props.showMenu}>Seasons</button>
-        <button>Matches</button>
+        <button disabled onClick={props.showMenu}>Matches</button>
       </div>
     </div>
     <div className={styles.SubHeader}>
@@ -29,7 +29,7 @@ export default withRouter(Header);
 
 function mapRoute(pathname) {
   const seasonRegEx = /\/season\/[1-9]/;
-  const matchRegEx = /\/season\/[1-9]\/match\/[1-9]/;
+  const matchRegEx = /\/season\/[1-9]\/match\/([1-9]|[1-6][0-9])/;
   if(pathname === '/') {
     return 'All Seasons';
   } else if(matchRegEx.test(pathname)) {

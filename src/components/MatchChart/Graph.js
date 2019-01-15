@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { dualBarChart } from './ChartHelper';
+//import { dualBarChart } from './ChartHelper';
 import styles from './MatchChart.module.css';
 
 class Graph extends Component {
@@ -9,7 +9,7 @@ class Graph extends Component {
   }
 
   componentDidMount() {
-    dualBarChart(this.props.data, this.node.current, this.props.meta);
+    //dualBarChart(this.props.data, this.node.current, this.props.meta);
   }
 
   render() {

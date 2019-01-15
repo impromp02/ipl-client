@@ -1,23 +1,18 @@
 import React, { Fragment } from 'react';
+import { withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import styles from './DashMenu.module.css';
 
-const MENU_ITEMS = {
-  season: 9,
-  match: 60
-};
-const type = 'season';
-const DashMenu = ({hideMenu}) => {
-  let menuElements = [];
-  for (let i=1; i<=MENU_ITEMS[type]; i++) {
-    menuElements.push(<li key={type+i} onClick={hideMenu}><Link to={`/${type}/${i}`}>{type + ' ' + i}</Link></li>);
-  }
-
+const DashMenu = (props) => {
+  let type = props.type === 'Seasons' ? 'season' : 'match';
+  console.log(props.location)
+  console.log(props.match);
+  console.log(props.history);
   return (
     <Fragment>
       <div className={styles.DashMenu}>
         <ul>
-          {menuElements}
+          {menuItems(type, props.hideMenu, props.location.pathname)}
         </ul>
       </div>
       <div className={styles.Backdrop}></div>
@@ -26,4 +21,27 @@ const DashMenu = ({hideMenu}) => {
   );
 }
 
-export default DashMenu;
+export default withRouter(DashMenu);
+
+function menuItems(type, hideMenu, pathname) {
+  let menuElements = [];
+  if(type === 'season') {
+    for(let i = 1; i<= 9; i++) {
+      menuElements.push(
+        <li key={type+i} onClick={hideMenu}>
+          <Link to={`/${type}/${i}`}>{type + ' ' + i}</Link>
+        </li>);
+    }
+  }
+  
+  if(type === 'match') {
+    for (let i = 1; i <= 60; i++) {
+      menuElements.push(
+        <li key={type+i} onClick={hideMenu}>
+          <Link to={`${pathname}/${type}/${i}`}>{type + ' ' + i}</Link>
+        </li>);
+    } 
+  }
+  
+  return menuElements;
+}
