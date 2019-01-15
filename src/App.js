@@ -5,6 +5,7 @@ import AllSeasonDash from './containers/DashView/AllSeasonDash';
 import SeasonDash from './containers/DashView/SeasonDash';
 import NotFound from './components/NotFound/NotFound';
 import DashMenu from './components/DashMenu/DashMenu';
+import MatchDash from './containers/DashView/MatchDash';
 
 class App extends Component {
   state = {
@@ -30,6 +31,7 @@ class App extends Component {
         {this.state.dashMenu ? <DashMenu hideMenu={this.hideDashMenu}/> : null}
         <Switch>
           <Route exact path='/' component={AllSeasonDash}/>
+          <Route path='/season/:seasonId/match/:matchId' component={MatchDash}/>
           <Route path='/season/:seasonId' component={SeasonDash}/>
           <Route component={NotFound} />
         </Switch>

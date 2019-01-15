@@ -2,7 +2,7 @@ import * as d3 from 'd3';
 import {teamNames} from '../../utils/valueMap';
 import '../../utils/teamColors.css';
 
-export const drawDualBarChart = (dataset, node, meta) => { 
+export const dualBarChart = (dataset, node, meta) => { 
   const margin = {
     top: 40,
     right: 20,
@@ -13,10 +13,9 @@ export const drawDualBarChart = (dataset, node, meta) => {
   const width = 1800 - margin.left - margin.right;
   const height = 500 - margin.top - margin.right;
 
-  const xScale0 = d3.scaleBand()
-                  .domain(dataset.map(d => d.Match_Id))
-                  .rangeRound([0, width])
-                  .paddingInner(0.3);
+  const xScale0 = d3.scaleLinear()
+                  .domain([0, d3.max(dataset, d => d._id.over)])
+                  .rangeRound([0, width]);
 
   const xScale1 = d3.scaleBand()
                     .domain(d3.range(2))
@@ -24,10 +23,10 @@ export const drawDualBarChart = (dataset, node, meta) => {
                     .paddingInner(0.01);
 
   const yScale = d3.scaleLinear()
-                  .domain([0, d3.max(dataset, function(d) {return d3.max(d.score, function(key) {return key['runs']}) })])
+                  .domain([0, d3.max(dataset, d => d.runs)])
                   .range([height, 0]);
 
-  const xAxis = d3.axisBottom(xScale0).tickSize(0);
+  const xAxis = d3.axisBottom(xScale0);
   const yAxis = d3.axisLeft(yScale);
 
   let svg = d3.select(node)
@@ -55,9 +54,9 @@ export const drawDualBarChart = (dataset, node, meta) => {
     .selectAll('g')
     .data(dataset)
     .enter().append('g')
-      .attr('transform', function(d) { return "translate(" + xScale0(d.Match_Id) + ",0)"; })
+      .attr('transform', function(d) { return "translate(" + xScale0(d._id.over) + ",0)"; })
       .selectAll('rect')
-      .data(function(d) { return d.score.reverse() })
+      .data(function(d) { return d.runs.reverse() })
       .enter().append('rect')
         .attr('x', function(d) {return xScale1(d._id)})
         .attr('y', function(d) { return yScale(d.runs)})
@@ -97,48 +96,3 @@ export const drawDualBarChart = (dataset, node, meta) => {
         .attr("dy", "0.32em")
         .text(function(d) { return d; });
 };
-
-export const drawPieChart = (dataset, node, meta) => {
-  console.log(dataset);
-
-  const margin = {
-    top: 10,
-    right: 10,
-    bottom: 10,
-    left: 10
-  };
-
-  const width = 600 - margin.left - margin.right;
-  const height = 400 - margin.top - margin.bottom;
-
-  const colorScale = d3.scaleOrdinal().domain(dataset.map(d => d._id)).range(['#377eb8', '#ff7f00']);
-  const pie = d3.pie().value( d => d.count);
-
-  const arcGen = d3.arc()
-              .innerRadius(0)
-              .outerRadius(d3.min([height, width])/2);
-
-  const svg = d3.select(node)
-    .attr('height', height+margin.top + margin.bottom)
-    .attr('width', width + margin.left + margin.right)
-    .append('g')
-    .attr('transform', `translate(${width / 2}, ${height / 2})`);
-
-  const g = svg.selectAll('g')
-      .data(pie(dataset))
-      .enter()
-      .append('g');
-
-  g.append('path')
-      .attr('fill', function(d, i) {
-        return colorScale(i);
-      })
-      .attr('stroke', 'white')
-      .attr('d', arcGen);
-  
-  g.append('text')
-      .attr('transform', function(d) { return `translate(${arcGen.centroid(d)})`})
-      .attr('text-anchor', 'middle')
-      .attr('fill', 'white')
-      .text(function(d, i) { return `${dataset[i]._id}: ${d.value}`; })   
-}

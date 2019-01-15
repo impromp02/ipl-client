@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './DashMenu.module.css';
 
@@ -14,11 +14,15 @@ const DashMenu = ({hideMenu}) => {
   }
 
   return (
-    <div className={styles.DashMenu}>
-      <ul>
-        {menuElements}
-      </ul>
-    </div>
+    <Fragment>
+      <div className={styles.DashMenu}>
+        <ul>
+          {menuElements}
+        </ul>
+      </div>
+      <div className={styles.Backdrop}></div>
+    </Fragment>
+    
   );
 }
 

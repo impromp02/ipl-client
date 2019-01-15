@@ -20,7 +20,7 @@ export const allSeasonMeta = [
 export const seasonMeta = [
   {
     label: 'Score',
-    title: 'Runs Scored in all the Matches' 
+    title: 'Runs Scored in Matches' 
   },
   {
     label: 'Toss Decision',
@@ -30,6 +30,17 @@ export const seasonMeta = [
     label: 'Result By',
     title: 'Overview of Season Results'
   }
-]
+];
+
+export const matchMeta = [
+  {
+    label: 'Score',
+    title: 'Runs Scored in Overs'
+  }, 
+  {
+    label: 'Wicket',
+    title: 'Fall of Wickets'
+  }
+];
 
 export const teamNames = ['kkr', 'rcb', 'csk', 'kxip', 'rr', 'dd', 'mi', 'dc', 'ktk', 'pw', 'srh', 'rps', 'gl'];

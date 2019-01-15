@@ -28,8 +28,15 @@ const Header = (props) => (
 export default withRouter(Header);
 
 function mapRoute(pathname) {
-  switch(pathname) {
-    case '/': return 'All Seasons';
-    default: return 'Season ' + pathname.slice(-1);
+  const seasonRegEx = /\/season\/[1-9]/;
+  const matchRegEx = /\/season\/[1-9]\/match\/[1-9]/;
+  if(pathname === '/') {
+    return 'All Seasons';
+  } else if(matchRegEx.test(pathname)) {
+    return 'Match ' +  pathname.slice(-1)
+  } else if(seasonRegEx.test(pathname)) {
+    return 'Season ' + pathname.slice(-1)
+  } else {
+    return 'Unknown';
   }
 }
